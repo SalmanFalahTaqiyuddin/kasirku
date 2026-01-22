@@ -4,13 +4,6 @@ Aplikasi ini merupakan pengembangan dari **Penugasan 1**, yang kini telah terint
 
 ---
 
-## 📝 Informasi Tugas
-* **Nama**: Salman Falah Taqiyuddin
-* **Deadline**: 1 Februari 2026, 23.59
-* **Status**: Selesai (Penugasan 1 & 2 digabung)
-
----
-
 ## 📖 Deskripsi Tugas & Skenario
 Setelah berhasil membuat fitur registrasi pada Penugasan 1, proyek ini mengaktifkan fitur Login. Aplikasi Kasir divalidasi dengan akun yang telah didaftarkan dan menyimpan data sesi tersebut agar pengguna tidak perlu login berulang kali saat aplikasi dibuka kembali.
 
