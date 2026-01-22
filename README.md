@@ -1,48 +1,54 @@
-# 🛒 Kasirku - Point of Sales System
+# 🛒 Kasirku - Mobile Point of Sales (POS)
 
-**Kasirku** adalah aplikasi manajemen penjualan (POS) berbasis web yang dirancang untuk membantu pengelolaan toko secara digital. Dibangun dengan framework Laravel, aplikasi ini menawarkan kemudahan dalam manajemen stok, transaksi kasir, hingga pelaporan keuangan yang akurat.
+**Kasirku** adalah aplikasi kasir berbasis mobile yang dibangun menggunakan **Flutter**. Aplikasi ini dirancang untuk membantu UMKM atau pemilik toko dalam mencatat penjualan, mengelola stok barang, dan memantau transaksi langsung dari smartphone.
 
 ---
 
 ## ✨ Fitur Utama
-* **Manajemen Barang**: Kelola stok, harga beli, harga jual, dan kategori produk.
-* **Transaksi Kasir**: Input penjualan cepat dengan perhitungan otomatis.
-* **Manajemen Supplier**: Pendataan pemasok barang untuk mempermudah restock.
-* **Laporan Penjualan**: Pantau histori transaksi dan laba rugi.
-* **Multi-User**: Sistem login untuk Admin dan Petugas/Kasir.
-* **Cetak Struk**: Fitur cetak nota penjualan.
+* **Manajemen Produk**: Tambah, edit, dan hapus data barang serta kategori.
+* **Sistem Transaksi**: Pencatatan penjualan dengan antarmuka yang user-friendly.
+* **Manajemen Stok**: Pantau ketersediaan barang secara real-time.
+* **Riwayat Penjualan**: Lihat kembali daftar transaksi yang telah dilakukan.
+* **User Interface Modern**: Tampilan bersih dan responsif menggunakan Material Design.
 
-## 🚀 Teknologi
-* **Backend**: Laravel (PHP)
-* **Frontend**: Blade Templates, Bootstrap, AdminLTE
-* **Database**: MySQL
+## 🚀 Teknologi & Library
+* **Framework**: [Flutter](https://flutter.dev)
+* **Language**: [Dart](https://dart.dev)
+* **State Management**: (Isi jika menggunakan Provider/Bloc/GetX)
+* **Database**: (Isi jika menggunakan Sqflite/Firebase/Hive)
 
-## 🛠️ Cara Instalasi
+## 🛠️ Cara Menjalankan Proyek
+Pastikan Anda sudah menginstal **Flutter SDK** di komputer Anda.
+
 1.  **Clone Repositori**:
-    `git clone https://github.com/SalmanFalahTaqiyuddin/kasirku.git`
-2.  **Masuk ke Folder**:
-    `cd kasirku`
-3.  **Instal Dependensi**:
-    `composer install`
-    `npm install && npm run dev`
-4.  **Setup Environment**:
-    `cp .env.example .env` (Sesuaikan detail database di file .env)
-5.  **Generate Key & Migrate**:
-    `php artisan key:generate`
-    `php artisan migrate --seed`
-6.  **Jalankan Aplikasi**:
-    `php artisan serve`
+    ```bash
+    git clone [https://github.com/SalmanFalahTaqiyuddin/kasirku.git](https://github.com/SalmanFalahTaqiyuddin/kasirku.git)
+    ```
+2.  **Masuk ke Direktori**:
+    ```bash
+    cd kasirku
+    ```
+3.  **Ambil Dependensi**:
+    ```bash
+    flutter pub get
+    ```
+4.  **Jalankan Aplikasi**:
+    Pastikan emulator atau perangkat fisik sudah terhubung.
+    ```bash
+    flutter run
+    ```
 
 ---
 
-## 📸 Tampilan Aplikasi
-*(Silakan tambahkan link screenshot aplikasi Anda di sini untuk tampilan yang lebih profesional)*
+## 📂 Struktur Proyek Singkat
+* `lib/` - Berisi file kode sumber Dart utama.
+* `pubspec.yaml` - Konfigurasi dependensi aplikasi.
 
 ## 🤝 Kontribusi
-Kontribusi terbuka untuk siapa saja. Silakan lakukan Fork, buat branch fitur, dan kirimkan Pull Request.
-
-## 📄 Lisensi
-Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/licenses/MIT).
+Jika Anda ingin mengembangkan aplikasi ini lebih lanjut, silakan lakukan:
+1. **Fork** repositori ini.
+2. Buat **Branch** fitur baru.
+3. Kirim **Pull Request**.
 
 ---
 **Developed by [Salman Falah Taqiyuddin](https://github.com/SalmanFalahTaqiyuddin)**
