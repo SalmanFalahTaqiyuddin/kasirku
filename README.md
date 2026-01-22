@@ -1,16 +1,48 @@
-<video src="videodemo.mp4" controls="controls" style="max-width: 100;"></video>
+# 🛒 Kasirku - Point of Sales System
 
-A new Flutter project.
+**Kasirku** adalah aplikasi manajemen penjualan (POS) berbasis web yang dirancang untuk membantu pengelolaan toko secara digital. Dibangun dengan framework Laravel, aplikasi ini menawarkan kemudahan dalam manajemen stok, transaksi kasir, hingga pelaporan keuangan yang akurat.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Fitur Utama
+* **Manajemen Barang**: Kelola stok, harga beli, harga jual, dan kategori produk.
+* **Transaksi Kasir**: Input penjualan cepat dengan perhitungan otomatis.
+* **Manajemen Supplier**: Pendataan pemasok barang untuk mempermudah restock.
+* **Laporan Penjualan**: Pantau histori transaksi dan laba rugi.
+* **Multi-User**: Sistem login untuk Admin dan Petugas/Kasir.
+* **Cetak Struk**: Fitur cetak nota penjualan.
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Teknologi
+* **Backend**: Laravel (PHP)
+* **Frontend**: Blade Templates, Bootstrap, AdminLTE
+* **Database**: MySQL
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🛠️ Cara Instalasi
+1.  **Clone Repositori**:
+    `git clone https://github.com/SalmanFalahTaqiyuddin/kasirku.git`
+2.  **Masuk ke Folder**:
+    `cd kasirku`
+3.  **Instal Dependensi**:
+    `composer install`
+    `npm install && npm run dev`
+4.  **Setup Environment**:
+    `cp .env.example .env` (Sesuaikan detail database di file .env)
+5.  **Generate Key & Migrate**:
+    `php artisan key:generate`
+    `php artisan migrate --seed`
+6.  **Jalankan Aplikasi**:
+    `php artisan serve`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 📸 Tampilan Aplikasi
+*(Silakan tambahkan link screenshot aplikasi Anda di sini untuk tampilan yang lebih profesional)*
+
+## 🤝 Kontribusi
+Kontribusi terbuka untuk siapa saja. Silakan lakukan Fork, buat branch fitur, dan kirimkan Pull Request.
+
+## 📄 Lisensi
+Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/licenses/MIT).
+
+---
+**Developed by [Salman Falah Taqiyuddin](https://github.com/SalmanFalahTaqiyuddin)**
