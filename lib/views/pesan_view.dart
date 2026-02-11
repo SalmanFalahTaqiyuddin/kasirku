@@ -43,7 +43,7 @@ class _PesanViewState extends State<PesanView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "My Orders", // Nama lebih umum untuk belanja baju
+                    "My Orders",
                     style: GoogleFonts.plusJakartaSans(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,
@@ -96,7 +96,6 @@ class _PesanViewState extends State<PesanView> {
       ),
       child: Row(
         children: [
-          // IMAGE SECTION
           Container(
             width: 90,
             height: 100,
@@ -115,12 +114,10 @@ class _PesanViewState extends State<PesanView> {
             ),
           ),
           const SizedBox(width: 16),
-          // INFO SECTION
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Status Badge
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
@@ -174,7 +171,6 @@ class _PesanViewState extends State<PesanView> {
               ],
             ),
           ),
-          // Icon panah kecil untuk kesan "bisa diklik"
           Icon(
             Icons.arrow_forward_ios_rounded,
             size: 14,
