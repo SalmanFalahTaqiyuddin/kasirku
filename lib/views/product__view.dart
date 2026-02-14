@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart'; // Tambahkan intl di pubspec.yaml untuk format rupiah
+import 'package:intl/intl.dart';
 import 'package:penugasan1/services/product_service.dart';
 import '../widgets/bottom_nav.dart';
 import '../models/product_model.dart';
@@ -14,25 +14,17 @@ class KasirView extends StatefulWidget {
 }
 
 class _KasirViewState extends State<KasirView> {
-  ProductService productService = ProductService();
-  List<ProductModel>? listProduk;
-
-  // Logika UI: Mengambil data dari service
-  getProduk() async {
-    ResponseDataList response = await ProductService.getProduct();
-    setState(() {
-      // Mengonversi data ke List<TokoModel> agar aman
-      listProduk = response.data?.cast<ProductModel>();
-    });
-  }
+  // Variabel untuk menyimpan proses pengambilan data
+  late Future<ResponseDataList> _productFuture;
 
   @override
   void initState() {
     super.initState();
-    getProduk();
+    // Inisialisasi pengambilan data saat widget pertama kali dibuat
+    _productFuture = ProductService.getProduct();
   }
 
-  // Helper untuk format Rupiah
+  // Helper untuk format mata uang Rupiah
   String formatRupiah(int price) {
     return NumberFormat.currency(
       locale: 'id_ID',
@@ -51,20 +43,49 @@ class _KasirViewState extends State<KasirView> {
           children: [
             _buildHeader(),
             Expanded(
-              // Logika UI: Jika data null (loading), tampilkan CircularProgressIndicator
-              child: listProduk == null
-                  ? const Center(
+              child: FutureBuilder<ResponseDataList>(
+                future: _productFuture,
+                builder: (context, snapshot) {
+                  // 1. SPINNER UTAMA: Muncul saat loading data dari API
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
                       child: CircularProgressIndicator(
                         color: Color(0xFF556B2F),
                       ),
-                    )
-                  : ListView.builder(
+                    );
+                  }
+
+                  // 2. JIKA TERJADI ERROR
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                        "Gagal mengambil data produk",
+                        style: GoogleFonts.plusJakartaSans(),
+                      ),
+                    );
+                  }
+
+                  // 3. JIKA DATA BERHASIL DIAMBIL
+                  if (snapshot.hasData) {
+                    final listProduk = snapshot.data?.data
+                        ?.cast<ProductModel>();
+
+                    if (listProduk == null || listProduk.isEmpty) {
+                      return const Center(child: Text("Produk tidak tersedia"));
+                    }
+
+                    return ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
-                      itemCount: listProduk!.length,
+                      itemCount: listProduk.length,
                       itemBuilder: (context, index) {
-                        return _buildProductCard(listProduk![index]);
+                        return _buildProductCard(listProduk[index]);
                       },
-                    ),
+                    );
+                  }
+
+                  return const SizedBox();
+                },
+              ),
             ),
           ],
         ),
@@ -73,6 +94,7 @@ class _KasirViewState extends State<KasirView> {
     );
   }
 
+  // Widget Header
   Widget _buildHeader() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(30, 40, 30, 20),
@@ -94,7 +116,7 @@ class _KasirViewState extends State<KasirView> {
     );
   }
 
-  // Desain Card Produk
+  // Widget Card Produk dengan Spinner Gambar
   Widget _buildProductCard(ProductModel item) {
     return Container(
       margin: const EdgeInsets.only(bottom: 18),
@@ -112,7 +134,7 @@ class _KasirViewState extends State<KasirView> {
       ),
       child: Row(
         children: [
-          // Foto Produk (NetworkImage)
+          // BAGIAN GAMBAR
           Container(
             width: 100,
             height: 100,
@@ -125,13 +147,27 @@ class _KasirViewState extends State<KasirView> {
               child: Image.network(
                 item.image ?? "",
                 fit: BoxFit.cover,
+                // SPINNER GAMBAR: Muncul saat gambar sedang di-download
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2, // Lebih tipis agar cantik
+                        color: const Color(0xFF556B2F),
+                      ),
+                    ),
+                  );
+                },
                 errorBuilder: (context, error, stackTrace) =>
                     const Icon(Icons.inventory_2_outlined, color: Colors.grey),
               ),
             ),
           ),
           const SizedBox(width: 16),
-          // Informasi Produk
+          // BAGIAN INFORMASI TEKS
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,7 +183,6 @@ class _KasirViewState extends State<KasirView> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 4),
-                // Stok
                 Text(
                   "Sisa Stok: ${item.stok ?? 0}",
                   style: GoogleFonts.plusJakartaSans(
@@ -157,7 +192,6 @@ class _KasirViewState extends State<KasirView> {
                   ),
                 ),
                 const SizedBox(height: 12),
-                // Harga
                 Text(
                   formatRupiah(item.harga ?? 0),
                   style: GoogleFonts.plusJakartaSans(

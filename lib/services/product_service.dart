@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/response_data_list.dart';
-import '../models/toko_model.dart';
+import '../models/product_model.dart';
 import '../models/user_login.dart';
 import '../services/url.dart' as url;
 
-class Tokoservice {
-  Future<ResponseDataList> getToko() async {
+class ProductService {
+  static Future<ResponseDataList> getProduct() async {
     UserLogin userLogin = UserLogin();
     var user = await userLogin.getUserLogin();
 
@@ -23,7 +23,7 @@ class Tokoservice {
       var data = json.decode(response.body);
       if (data["status"] == true) {
         List listBarang = data["data"]
-            .map((r) => TokoModel.fromJson(r))
+            .map((r) => ProductModel.fromJson(r))
             .toList();
         return ResponseDataList(
           status: true,
